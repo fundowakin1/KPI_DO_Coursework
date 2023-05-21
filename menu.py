@@ -1,5 +1,8 @@
 from branchandbounds import branch_and_bounds
+from bruteforce import brute_force
+from greedy import greedy_selection
 from custom_input import user_input
+import custom_output as out
 
 def menu():
     while True:

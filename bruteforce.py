@@ -1,6 +1,6 @@
 import itertools
 
-def MaxCompatibleSubset(k, c, n):
+def brute_force(k, c, n):
     bestSubset  = []
     maxCompatibility = 100
 
@@ -14,12 +14,3 @@ def MaxCompatibleSubset(k, c, n):
             bestSubset  = subset
 
     return bestSubset 
-
-
-c = [[99, 0.1, 1, 0.6],
-     [99, 99, 0.3, 0.5],
-     [99, 99, 99, 0.9],
-     [99, 99, 99, 99]]
-
-k = 3
-print(MaxCompatibleSubset(k, c, len(c)))
