@@ -34,7 +34,7 @@ def solve_problem():
     if choice == '1':
         algorithm_a(data)
     elif choice == '2':
-        branch_and_bounds(C=data[2], n=data[1], k=data[0])
+        out.print_results(branch_and_bounds(C=data[2], n=data[1], k=data[0]))
     elif choice == '3':
         algorithm_c(data)
     elif choice == '4':
