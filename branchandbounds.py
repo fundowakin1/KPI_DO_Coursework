@@ -24,7 +24,7 @@ def branch_and_bounds(C, n, k):
     record = Node(100, [100, 100])
     iteration = 0
     while len(queue) > 0:
-      iteration = iteration + 1
+      iteration += 1
       Vcurrent = queue.pop(0)
       diff_indexes = difference(N, Vcurrent.items)
       children = []
@@ -50,7 +50,8 @@ def branch_and_bounds(C, n, k):
           queue.sort(key=condition)
       explored.append(Vcurrent)
     
-    return record.items           
+    
+    return record.items          
 
 def find_child(Vcurrent, index):
   temp = Vcurrent.items.copy()

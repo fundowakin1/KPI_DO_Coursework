@@ -1,6 +1,6 @@
 import itertools
 
-def brute_force(k, c, n):
+def brute_force(C, n, k):
     bestSubset  = []
     maxCompatibility = 100
 
@@ -8,9 +8,10 @@ def brute_force(k, c, n):
         compatibility = 0
         for i in range(k):
             for j in range(i + 1, k):
-                compatibility += c[subset[i] - 1][subset[j] - 1]
+                compatibility += C[subset[i] - 1][subset[j] - 1]
         if compatibility < maxCompatibility:
             maxCompatibility = compatibility
             bestSubset  = subset
 
-    return bestSubset 
+
+    return [x-1 for x in bestSubset] 

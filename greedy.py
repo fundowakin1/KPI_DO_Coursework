@@ -1,4 +1,4 @@
-def greedy_selection(k, C, n):
+def greedy_selection(C, n, k):
     # Створюємо список пар об’єктів, відсортований за зростанням сумісності
     pairs = [(i, j, C[i][j]) for i in range(n) for j in range(i + 1, n)]
     pairs.sort(key=lambda x: x[2])

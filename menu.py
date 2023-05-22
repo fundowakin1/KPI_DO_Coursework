@@ -4,13 +4,18 @@ from greedy import greedy_selection
 from custom_input import user_input
 import custom_output as out
 
+
+
 def menu():
     while True:
-        print("\nMenu:")
+        print("--------------------------------------------")
+        print("Menu:")
         print("1. Solve problem")
         print("2. Start experiment")
         print("3. Exit")
+        print("--------------------------------------------")
         choice = input("Enter your choice (1-3): ")
+        print("\n")
         
         if choice == '1':
             solve_problem()
@@ -22,50 +27,37 @@ def menu():
             print("Invalid choice!")
 
 def solve_problem():
+    print("--------------------------------------------")
     print("Choose an algorithm:")
     print("1. Greedy Algorithm")
     print("2. Branch and Bounds Algorithm")
     print("3. Brute Force Algorithm")
-    print("4. Dynamic Programming (Cutting ut the most incompatible)")
+    print("4. Dynamic Programming (Cutting out the most incompatible)")
+    print("--------------------------------------------")
     choice = input("Enter your choice (1-4): ")
 
     data = user_input()
     
     if choice == '1':
-        algorithm_a(data)
+        out.print_results(greedy_selection(data[0], data[1], data[2]))
     elif choice == '2':
-        out.print_results(branch_and_bounds(C=data[2], n=data[1], k=data[0]))
+        out.print_results(branch_and_bounds(data[0], data[1], data[2]))
     elif choice == '3':
-        algorithm_c(data)
+        out.print_results(brute_force(data[0], data[1], data[2]))
     elif choice == '4':
         algorithm_d(data)
     else:
         print("Invalid choice!")
-
-def algorithm_a(data):
-    
-    # Algorithm A implementation here
-    print("Running Algorithm A with data:", data)
-
-
-
-def algorithm_c(data):
-    data = user_input()
-    # Algorithm C implementation here
-    print("Running Algorithm C with data:", data)
 
 def algorithm_d(data):
     data = user_input()
     # Algorithm D implementation here
     print("Running Algorithm D with data:", data)
 
-
 def start_experiment():
     # Implement experiment functionality
     print("Starting experiment...")
     # Add your experiment code here
-
-
 
 def main():
     try:
