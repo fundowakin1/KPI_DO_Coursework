@@ -4,8 +4,6 @@ from greedy import greedy_selection
 from custom_input import user_input
 import custom_output as out
 
-
-
 def menu():
     while True:
         print("--------------------------------------------")
@@ -19,6 +17,7 @@ def menu():
         
         if choice == '1':
             solve_problem()
+             
         elif choice == '2':
             start_experiment()
         elif choice == '3':
@@ -39,11 +38,11 @@ def solve_problem():
     data = user_input()
     
     if choice == '1':
-        out.print_results(greedy_selection(data[0], data[1], data[2]))
+        out.write_file(out.print_results(greedy_selection(data[0], data[1], data[2])), data[0])
     elif choice == '2':
-        out.print_results(branch_and_bounds(data[0], data[1], data[2]))
+        out.write_file(out.print_results(branch_and_bounds(data[0], data[1], data[2])), data[0])
     elif choice == '3':
-        out.print_results(brute_force(data[0], data[1], data[2]))
+        out.write_file(out.print_results(brute_force(data[0], data[1], data[2]))1, data[0])
     elif choice == '4':
         algorithm_d(data)
     else:
