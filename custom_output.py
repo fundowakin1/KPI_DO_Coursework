@@ -1,4 +1,3 @@
-import numpy as np
 from datetime import datetime
 
 def print_results(numbers):
@@ -13,9 +12,9 @@ def print_results(numbers):
     return [x+1 for x in numbers] 
 
 
-def write_file(numbers, matrix):
+def write_file(numbers, matrix, alg_name):
     current_datetime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    filename = f"Results {current_datetime}.txt"
+    filename = f"Results {current_datetime} {alg_name}.txt"
     
     with open(filename, 'w') as file:
         file.write("Matrix C:\n")
