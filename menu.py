@@ -40,13 +40,13 @@ def solve_problem():
     data = user_input()
     
     if choice == '1':
-        out.write_file(out.print_results(greedy_selection(data[0], data[1], data[2])), data[0], "Greedy")
+        out.write_file(out.print_results(greedy_selection(data[0], data[1], data[2]), data[0]), data[0], "Greedy")
     elif choice == '2':
-        out.write_file(out.print_results(branch_and_bounds(data[0], data[1], data[2])), data[0], "Branch and Bounds")
+        out.write_file(out.print_results(branch_and_bounds(data[0], data[1], data[2]), data[0]), data[0], "Branch and Bounds")
     elif choice == '3':
-        out.write_file(out.print_results(brute_force(data[0], data[1], data[2])), data[0], "Bruteforce")
+        out.write_file(out.print_results(brute_force(data[0], data[1], data[2]), data[0]), data[0], "Bruteforce")
     elif choice == '4':
-        out.write_file(out.print_results(comi(data[0], data[1], data[2])), data[0], "Dynamic")
+        out.write_file(out.print_results(comi(data[0], data[1], data[2]), data[0]), data[0], "Dynamic")
     else:
         print("Invalid choice!")
 
