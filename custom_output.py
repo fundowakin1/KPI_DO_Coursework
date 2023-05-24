@@ -6,7 +6,7 @@ def print_results(numbers, matrix):
     print("Results:")
     print("--------------------------------------------")
     print("The most compatible objects:")
-    for number in numbers:
+    for number in sorted(numbers):
         print(f"\t{number+1}")
     print("--------------------------------------------")
     print("The sum compatibility:")
@@ -30,12 +30,13 @@ def calculate_sum_of_combinations(list_of_indexes, matrix):
 def write_file(numbers, matrix, alg_name):
     current_datetime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     filename = f"Results {current_datetime} {alg_name}.txt"
-    
+
     with open(filename, 'w') as file:
-        file.write("Matrix C:\n")
-        
         for row in matrix:
-            file.write(' '.join(map(str, row)) + '\n')
+            for value in row:
+                formatted_value = f"{value:.2f}" if value % 1 != 0 else f"{int(value)}"
+                file.write(f"{formatted_value}\t")
+            file.write("\n")
         
         file.write('\n')
         
