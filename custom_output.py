@@ -2,6 +2,7 @@ from datetime import datetime
 import itertools
 
 def print_results(numbers, matrix):
+    
     print("--------------------------------------------")
     print("Results:")
     print("--------------------------------------------")
@@ -31,7 +32,10 @@ def write_file(numbers, matrix, alg_name):
     current_datetime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     filename = f"Results {current_datetime} {alg_name}.txt"
 
+    
+
     with open(filename, 'w') as file:
+        file.write("The matrix:\n")
         for row in matrix:
             for value in row:
                 formatted_value = f"{value:.2f}" if value % 1 != 0 else f"{int(value)}"
@@ -41,7 +45,7 @@ def write_file(numbers, matrix, alg_name):
         file.write('\n')
         
         file.write("The results (S):\n")
-        for number in numbers:
+        for number in sorted(numbers):
             file.write(str(number) + '\n')
 
         file.write('\n')

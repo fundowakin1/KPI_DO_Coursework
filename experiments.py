@@ -8,37 +8,27 @@ import matplotlib.pyplot as plt
 
 
 def dimention_to_time_experiment():
+    n = 10
     print("--------------------------------------------")
     print("Input data for your experiment: ")
     print("--------------------------------------------")
-    n = int(input("Enter the start n: "))
+    
+    R = int(input("Enter R (number of dimentions): "))
     print("--------------------------------------------")
 
-    N = int(input("Enter the final n: "))
-    print("--------------------------------------------")
+    N = R*n
 
     if n > N:
-            raise ValueError("Final n be more than to n.")
+            raise ValueError("Error")
 
-    deltan = int(input("Enter the delta_n: "))
-    print("--------------------------------------------")
-
-    if deltan >= (N-n):
-            raise ValueError("Incorrect delta n")
-
-    k = int(input("Enter the number of objects to find for the start n: "))
-    print("--------------------------------------------")
-
-    if k > n:
-            raise ValueError("k must be less than or equal to n.")
+    
+    k = int(0.5*n)
     
     J = int(input("Enter the number of experiments for each n: "))
     print("--------------------------------------------")
     
-    mu = float(input("Enter mu (average value for generation): "))
-    print("--------------------------------------------")
-    sigma = float(input("Enter sigma (dispersion for values): "))
-    print("--------------------------------------------")
+    mu = 0.5
+    sigma = mu*0.9
 
     dimensions = []
     average_time_greedy_list = []
@@ -47,46 +37,44 @@ def dimention_to_time_experiment():
     average_time_comi_list = []
 
     counter1 = 0
-    counter2 = 0
+    r = 0
 
-    while n+(deltan*counter1) < N:
-        r = n+deltan*counter1
-
-        dimensions.append(r)
+    while r < R:
+        r+=1
+        current_size = r*n
+        dimensions.append(current_size)
         
         average_time_greedy = 0
         average_time_branch = 0
         average_time_brute = 0
         average_time_comi = 0
 
-        while counter2 < J:
+        while counter1 < J:
 
-            matrix = [[100] * r for _ in range(r)]
+            matrix = [[100] * current_size for _ in range(current_size)]
 
-            for i in range(r):
-                for j in range(i + 1, r):
+            for i in range(current_size):
+                for j in range(i + 1, current_size):
                     value = random.normalvariate(mu, sigma)
                     
                     value = max(0, min(1, value))
                     matrix[i][j] = round(value, 2)
                     matrix[j][i] = round(value, 2)
 
-            results_list = solving_problem(matrix, r, (k*(counter1+1)))
+            results_list = solving_problem(matrix, current_size, int(current_size*0.5))
             average_time_greedy += results_list[0]
             average_time_branch += results_list[1]
             average_time_brute += results_list[2]
             average_time_comi += results_list[3]
-
             
-            
-            counter2 += 1
+            counter1 += 1
         
         average_time_greedy_list.append(average_time_greedy / J)
         average_time_branch_list.append(average_time_branch / J)
         average_time_brute_list.append(average_time_brute / J)
-        average_time_comi_list.appemd(average_time_comi / J)
+        average_time_comi_list.append(average_time_comi / J)
 
-        print(f"Processed for n: {r}, k: {k*(counter1+1)}")
+        print(f"Processed for n: {current_size}, k: {int(current_size*0.5)}")
 
         counter1 += 1
 

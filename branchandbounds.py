@@ -1,82 +1,39 @@
-class Node:
-  def __init__(self, compatibility, items):
-    self.compatibility = compatibility
-    self.items = items
+import numpy as np
 
 def branch_and_bounds(C, n, k):
-    c_min = 100
-    i_min = 100
-    j_min = 100
-    N = []
-    for element in range(n):
-      N.append(element)
+    N = list(range(1, n+1))
+    max_compat = 100000000000
+    best_subset = []
 
-    for element in C:
-        element_min = min(element)
-        if element_min < c_min:
-            c_min = element_min
-            i_min = C.index(element)
-            j_min = element.index(c_min)
+    def backtrack(subset, curr_index, curr_compat):
+        nonlocal max_compat, best_subset
 
-    node = Node(c_min, [i_min, j_min])
-    queue = [node]
-    explored = []
-    record = Node(100, [100, 100])
-    iteration = 0
-    while len(queue) > 0:
-      iteration += 1
-      Vcurrent = queue.pop(0)
-      diff_indexes = difference(N, Vcurrent.items)
-      children = []
-      for index in diff_indexes:
-        c = Vcurrent.compatibility
-        for item in Vcurrent.items:
-          c += C[item][index]
-        child = []
-        child = find_child(Vcurrent, index)
-        children.append(Node(c, child))
-      children = difference(children, explored)
-      if len(children) > 0:
-        if len(Vcurrent.items) + 1 == k:
-          child_min = min(children, key = condition)
-          if child_min.compatibility < record.compatibility:
-            record = child_min
-            queue = update_queue(queue, record)
-          explored = explored + children
-        else:
-          for child in children:
-            if child.compatibility < record.compatibility:
-              queue.append(child)
-          queue.sort(key=condition)
-      explored.append(Vcurrent)
-    
-    
-    return record.items          
+        if len(subset) == k:  # Subset size reached k
+            if curr_compat < max_compat:
+                max_compat = curr_compat
+                best_subset = subset[:]
+            return
 
-def find_child(Vcurrent, index):
-  temp = Vcurrent.items.copy()
-  temp.append(index)
-  temp.sort()
-  return temp
+        if curr_index >= n:  # Reached the end of the object list
+            return
 
-def print_list(l):
-  for item in l:
-    print(item.items)
-    print(item.compatibility)
+        if len(subset) + n - curr_index < k:  # Not enough objects remaining
+            return
 
-def update_queue(queue, record):
-  temp = []
-  for item in queue:
-    if(item.compatibility < record.compatibility):
-      temp.append(item)
-  return temp
+        # Branching: Include current object
+        subset.append(N[curr_index])
+        backtrack(subset, curr_index + 1, calc_total_compat(subset))
+        subset.pop()
 
-def condition(node):
-  return node.compatibility
+        # Bound: Exclude current object
+        backtrack(subset, curr_index + 1, curr_compat)
 
-def difference(a, b):
-  temp = []
-  for element in a:
-    if element not in b:
-      temp.append(element)
-  return temp
+    def calc_total_compat(subset):
+        total = 0.0
+        for i in range(len(subset)):
+            for j in range(i + 1, len(subset)):
+                total += C[subset[i] - 1][subset[j] - 1]
+        return total
+
+    backtrack([], 0, 0.0)
+    return [x-1 for x in best_subset]
