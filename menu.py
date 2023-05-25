@@ -46,7 +46,7 @@ def solve_problem():
     elif choice == '3':
         out.write_file(out.print_results(brute_force(data[0], data[1], data[2]), data[0]), data[0], "Bruteforce")
     elif choice == '4':
-        out.write_file(out.print_results(comi(data[0], data[1], data[2]), data[0]), data[0], "Dynamic")
+        out.write_file(out.print_results(comi(data[0], data[1], data[2]), data[0]), data[0], "COMI")
     else:
         print("Invalid choice!")
 

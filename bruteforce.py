@@ -2,7 +2,7 @@ import itertools
 
 def brute_force(C, n, k):
     bestSubset  = []
-    maxCompatibility = 100
+    maxCompatibility = 1000000
 
     for subset in itertools.combinations(range(1, n + 1), k):
         compatibility = 0
