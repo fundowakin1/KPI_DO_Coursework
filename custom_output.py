@@ -52,3 +52,9 @@ def write_file(numbers, matrix, alg_name):
 
         file.write("The sum compitability:\n")
         file.write(str(calculate_sum_of_combinations([x-1 for x in numbers] , matrix)))
+
+def time_exper_output(average_time, list_n):
+    return 0
+
+def dimentions_exper_output(average_dimentions, list_n):
+    return 0

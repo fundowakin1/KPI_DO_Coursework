@@ -55,22 +55,22 @@ def choose_experiment():
     print("Choose an experiment:")
     print("1. The effect of the problem`s dimension on the algorithm's running time")
     print("2. The effect of the number of final values on the algorithm's running time")
-    print("3. The effect of the parameters of the problem on the accuracy of algorithms")
-    print("4. The effect of the problem`s dimension on the accuracy of algorithms")
-    print("5. The effect of the number of final values on the accuracy of algorithms")
+    print("3. The effect of the problem`s dimension on the accuracy of algorithms")
+    print("4. The effect of the number of final values on the accuracy of algorithms")
+    print("5. The effect of the parameters of the problem on the accuracy of algorithms")
     print("--------------------------------------------")
-    choice = input("Enter your choice (1-3): ")
+    choice = input("Enter your choice (1-5): ")
 
     if choice == '1':
         exper.dimention_to_time_experiment()
     elif choice == '2':
         exper.finalvalues_to_time_experiment()
     elif choice == '3':
-        print("experiment 3")
+        exper.dimention_to_accuracy_experiment()
     elif choice == '4':
-        print("experiment 4")
+        exper.finalvalues_to_accuracy_experiment()
     elif choice == '5':
-        print("experiment 5")
+        exper.parameters_to_accuracy_experiment()
     else:
         print("Invalid choice!")
 
