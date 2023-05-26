@@ -3,6 +3,7 @@ from branchandbounds import branch_and_bounds
 from bruteforce import brute_force
 from greedy import greedy_selection
 from comi import comi
+from custom_output import exper_output
 import time
 import matplotlib.pyplot as plt
 from custom_output import calculate_sum_of_combinations as comp
@@ -70,6 +71,9 @@ def dimention_to_time_experiment():
         print(f"Processed for n: {current_size}, k: {int(current_size*0.5)}")
 
         r+=1
+    
+
+    exper_output(average_time_greedy_list, average_time_branch_list, average_time_brute_list, average_time_comi_list, dimensions, "Dimention to Time")
 
     plt.plot(dimensions, average_time_greedy_list, marker='o', label='Greedy')
     plt.plot(dimensions, average_time_branch_list, marker='o', label='Branch and Bounds')
@@ -154,6 +158,8 @@ def finalvalues_to_time_experiment():
 
         r+=1
 
+    exper_output(average_time_greedy_list, average_time_branch_list, average_time_brute_list, average_time_comi_list, dimensions, "Final Values to Time")
+
     plt.plot(dimensions, average_time_greedy_list, marker='o', label='Greedy')
     plt.plot(dimensions, average_time_branch_list, marker='o', label='Branch and Bounds')
     plt.plot(dimensions, average_time_brute_list, marker='o', label='Bruteforce')
@@ -231,6 +237,8 @@ def dimention_to_accuracy_experiment():
         print(f"Processed for n: {current_size}, k: {int(current_size*0.5)}")
 
         r+=1
+
+    exper_output(average_shift_greedy_list, average_shift_branch_list, average_shift_brute_list, average_shift_comi_list, dimensions, "Dimention to Accuracy")
 
     plt.plot(dimensions, average_shift_greedy_list, marker='o', label='Greedy')
     plt.plot(dimensions, average_shift_branch_list, marker='o', label='Branch and Bounds')
@@ -314,6 +322,8 @@ def finalvalues_to_accuracy_experiment():
         print(f"Processed for n: {n}, k: {current_k}")
 
         r+=1
+
+    exper_output(average_shift_greedy_list, average_shift_branch_list, average_shift_brute_list, average_shift_comi_list, dimensions, "Final Values to Accuracy")
 
     plt.plot(dimensions, average_shift_greedy_list, marker='o', label='Greedy')
     plt.plot(dimensions, average_shift_branch_list, marker='o', label='Branch and Bounds')
@@ -401,6 +411,8 @@ def parameters_to_accuracy_experiment():
         print(f"Processed for n: {n}, sigma: {current_sigma}")
 
         r+=1
+
+    exper_output(average_shift_greedy_list, average_shift_branch_list, average_shift_brute_list, average_shift_comi_list, dimensions, "Dispersion vs. Accuracy")
 
     plt.plot(dimensions, average_shift_greedy_list, marker='o', label='Greedy')
     plt.plot(dimensions, average_shift_branch_list, marker='o', label='Branch and Bounds')
