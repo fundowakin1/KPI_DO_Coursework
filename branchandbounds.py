@@ -1,5 +1,3 @@
-import numpy as np
-
 def branch_and_bounds(C, n, k):
     N = list(range(1, n+1))
     max_compat = 100000000000
